@@ -1,0 +1,69 @@
+﻿<UserControl x:Class="RdpOctopus.Views.SettingsControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignHeight="450"
+             d:DesignWidth="600">
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="Метод ввода:" Style="{StaticResource LabelStyle}"/>
+        <ComboBox Grid.Row="0" Grid.Column="1"
+                  ItemsSource="{Binding InputMethodNames}"
+                  SelectedItem="{Binding InputMethodName, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Интервал (мс):" Style="{StaticResource LabelStyle}"/>
+        <TextBox Grid.Row="1" Grid.Column="1"
+                 Text="{Binding IntervalDelay, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="Shift задержка (мс):" Style="{StaticResource LabelStyle}"/>
+        <TextBox Grid.Row="2" Grid.Column="1"
+                 Text="{Binding ShiftDelay, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="Смена языка (мс):" Style="{StaticResource LabelStyle}"/>
+        <TextBox Grid.Row="3" Grid.Column="1"
+                 Text="{Binding SwitchDelay, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <TextBlock Grid.Row="4" Grid.Column="0" Text="Начальная раскладка:" Style="{StaticResource LabelStyle}"/>
+        <ComboBox Grid.Row="4" Grid.Column="1"
+                  ItemsSource="{Binding AvailableLayouts}"
+                  SelectedItem="{Binding InitLayoutName, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <TextBlock Grid.Row="5" Grid.Column="0" Text="Смена языка:" Style="{StaticResource LabelStyle}"/>
+        <ComboBox Grid.Row="5" Grid.Column="1"
+                  ItemsSource="{Binding AvailableSwitchMethods}"
+                  SelectedItem="{Binding SwitchMethod, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <TextBlock Grid.Row="6" Grid.Column="0" Text="Задержка старта (сек):" Style="{StaticResource LabelStyle}"/>
+        <TextBox Grid.Row="6" Grid.Column="1"
+                 Text="{Binding StartDelay, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <StackPanel Grid.Row="7" Grid.Column="1" 
+                    Orientation="Horizontal" 
+                    HorizontalAlignment="Right" 
+                    Margin="0,14,0,0">
+            <Button Content="Загрузить"
+                    Style="{StaticResource SecondaryButtonStyle}"
+                    Command="{Binding LoadSettingsCommand}"/>
+            <Button Content="Сохранить"
+                    Style="{StaticResource PrimaryButtonStyle}"
+                    Command="{Binding SaveSettingsCommand}"/>
+        </StackPanel>
+    </Grid>
+</UserControl>
